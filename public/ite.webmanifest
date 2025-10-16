@@ -1,0 +1,16 @@
+{
+  "name": "GrowthLayer Studio",
+  "short_name": "GrowthLayer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#3EF4E4",
+  "description": "Engineering brands for the digital age.",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

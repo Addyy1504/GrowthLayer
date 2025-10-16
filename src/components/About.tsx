@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import Pattern from '../assets/Pattern.png';
+import { useEffect, useRef, useState } from "react";
+import Pattern from "../assets/Pattern.png";
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,9 +15,9 @@ export default function About() {
   }, []);
 
   const pillars = [
-    { number: '01', title: 'Strategy', description: 'We build with clarity and intention.' },
-    { number: '02', title: 'Creativity', description: 'We tell stories that leave an impression.' },
-    { number: '03', title: 'Systems', description: 'We automate what matters to scale brands.' },
+    { number: "01", title: "Strategy", description: "We build with clarity and intention." },
+    { number: "02", title: "Creativity", description: "We tell stories that leave an impression." },
+    { number: "03", title: "Systems", description: "We automate what matters to scale brands." },
   ];
 
   return (
@@ -26,7 +26,6 @@ export default function About() {
       ref={sectionRef}
       className="relative pt-52 pb-52 bg-white text-black overflow-hidden"
     >
-      {/* 🌟 MAIN CONTENT */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl md:text-6xl font-black mb-6">
           The Studio<span className="text-[#3EF4E4]">.</span>
@@ -40,7 +39,7 @@ export default function About() {
             <div
               key={pillar.number}
               className={`flex flex-col items-center text-center max-w-xs transition-all duration-1000 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
             >
               <span className="text-4xl md:text-5xl font-black text-[#3EF4E4] mb-3 md:mb-4 opacity-90">
@@ -53,7 +52,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* 🌿 Pattern Image Divider at Bottom */}
       <div className="absolute bottom-0 left-0 w-full">
         <img
           src={Pattern}

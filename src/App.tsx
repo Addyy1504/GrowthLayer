@@ -21,7 +21,7 @@ export default function App() {
       {/* ✅ Navbar visible on all pages */}
       <Navigation />
 
-      {/* 🌐 Page Content */}
+      {/* 🌐 Page Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
 
