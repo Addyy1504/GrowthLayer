@@ -1,0 +1,8 @@
+/* Aurora.css */
+.aurora-container {
+  position: absolute;  /* ✅ Needed so it's in middle layer */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
