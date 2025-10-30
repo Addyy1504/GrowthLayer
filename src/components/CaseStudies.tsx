@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Pattern from '../assets/Pattern.png';
 
 export default function CaseStudies() {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,6 +31,14 @@ export default function CaseStudies() {
       tags: ['Web Design', 'B2B', 'Branding'],
       accent: '#3EF4E4',
       link: '/case-studies/anchor-fab',
+    },
+    {
+      title: 'Real Estate Digital Presence',
+      description:
+        'A combined digital transformation for Munjal Constructions and Kumar Construction — building modern, lead-driven websites for Delhi’s real estate and construction industry.',
+      tags: ['Real Estate', 'Web Design', 'Lead Generation'],
+      accent: '#3EF4E4', // 💡 changed from #A259FF → #3EF4E4 (mint aqua)
+      link: '/case-studies/real-estate',
     },
   ];
 
@@ -96,35 +103,29 @@ export default function CaseStudies() {
                 </div>
 
                 {/* 👇 View Project Button */}
-                {/* 👇 View Project Button */}
-<Link
-  to={project.link}
-  className="inline-flex items-center gap-2 font-semibold text-black bg-[#3EF4E4] border border-[#3EF4E4] px-5 py-2 rounded-full hover:bg-white hover:text-[#3EF4E4] transition-all duration-300 self-start"
->
-  View Project
-  <ExternalLink size={16} />
-</Link>
-
+                <Link
+                  to={project.link}
+                  className="inline-flex items-center gap-2 font-semibold text-black bg-[#3EF4E4] border border-[#3EF4E4] px-5 py-2 rounded-full hover:bg-white hover:text-[#3EF4E4] transition-all duration-300 self-start"
+                >
+                  View Project
+                  <ExternalLink size={16} />
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
         {/* ✍️ Footer Line */}
-        {/* ✍️ Footer Line Removed and Spacing Adjusted */}
-<div
-  className={`mt-12 text-center transition-all duration-1000 ${
-    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-  }`}
->
-  <p className="text-2xl md:text-3xl font-bold text-gray-800">
-    And we’re just getting started 👀
-  </p>
-</div>
-
+        <div
+          className={`mt-12 text-center transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <p className="text-2xl md:text-3xl font-bold text-gray-800">
+            And we’re just getting started 👀
+          </p>
+        </div>
       </div>
-
-  
     </section>
   );
 }

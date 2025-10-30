@@ -9,6 +9,7 @@ import Home from './pages/Home';
 // 📂 Case Studies
 import LooksSalon from './pages/LooksSalon';
 import AnchorFab from './pages/AnchorFab';
+import RealEstate from './pages/RealEstate'; // 🏗️ Added Real Estate Case Study
 
 // 🧰 Services
 import ServiceCreatives from './pages/ServiceCreatives';
@@ -23,11 +24,13 @@ export default function App() {
 
       {/* 🌐 Page Routes */}
       <Routes>
+        {/* 🏠 Home */}
         <Route path="/" element={<Home />} />
 
         {/* 📂 Case Studies */}
         <Route path="/case-studies/looks-salon" element={<LooksSalon />} />
         <Route path="/case-studies/anchor-fab" element={<AnchorFab />} />
+        <Route path="/case-studies/real-estate" element={<RealEstate />} /> {/* 🏙️ Added */}
 
         {/* 🧰 Services */}
         <Route path="/services/creatives" element={<ServiceCreatives />} />
