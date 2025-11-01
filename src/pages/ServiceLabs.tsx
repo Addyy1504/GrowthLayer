@@ -94,7 +94,8 @@ export default function ServiceLabs() {
 
       {/* 🪄 Hero Section */}
       <div className="min-h-screen bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-20 text-center">
+        <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-36 pb-16 text-center">
+
           <div
             className={`transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'

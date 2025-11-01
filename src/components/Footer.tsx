@@ -1,6 +1,32 @@
 import { Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🔄 Scroll to the hash section after navigation (for e.g. /#services)
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
+  const handleNavClick = (path: string) => {
+    if (path.startsWith('#')) {
+      // Smooth-scroll if it's an anchor on the same page
+      const element = document.querySelector(path);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+      else navigate('/' + path); // fallback if route hash
+    } else {
+      navigate(path);
+    }
+  };
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '#about' },
@@ -25,26 +51,25 @@ export default function Footer() {
         {/* 🧠 Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-8 items-center justify-between">
           {/* 🪄 Brand */}
-<div className="text-center md:text-left space-y-2 mx-auto md:mx-0">
-  <h3 className="text-3xl font-black tracking-tight">
-    <span className="text-[#3EF4E4]">GrowthLayer</span> Studio
-  </h3>
-  <p className="text-gray-400 text-sm md:text-base max-w-xs mx-auto md:mx-0">
-    Engineering brands for the digital age 🚀
-  </p>
-</div>
-
+          <div className="text-center md:text-left space-y-2 mx-auto md:mx-0">
+            <h3 className="text-3xl font-black tracking-tight">
+              <span className="text-[#3EF4E4]">GrowthLayer</span> Studio
+            </h3>
+            <p className="text-gray-400 text-sm md:text-base max-w-xs mx-auto md:mx-0">
+              Engineering brands for the digital age 🚀
+            </p>
+          </div>
 
           {/* 🧭 Navigation */}
           <div className="flex flex-wrap justify-center md:justify-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.path}
+                onClick={() => handleNavClick(link.path)}
                 className="text-sm text-gray-400 hover:text-[#3EF4E4] transition-colors relative after:content-[''] after:block after:h-[2px] after:w-0 after:bg-[#3EF4E4] after:transition-all hover:after:w-full after:mt-1"
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -77,13 +102,18 @@ export default function Footer() {
         {/* 📜 Bottom Section */}
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p className="text-center md:text-left">
-            &copy; {new Date().getFullYear()} <span className="text-white">GrowthLayer Studio</span>. All rights reserved.
+            &copy; {new Date().getFullYear()}{' '}
+            <span className="text-white">GrowthLayer Studio</span>. All rights reserved.
           </p>
 
           <div className="flex gap-3 text-center md:text-right">
-            <a href="#" className="hover:text-[#3EF4E4] transition-colors">Privacy Policy</a>
+            <Link to="/privacy" className="hover:text-[#3EF4E4] transition-colors">
+              Privacy Policy
+            </Link>
             <span>•</span>
-            <a href="#" className="hover:text-[#3EF4E4] transition-colors">Terms</a>
+            <Link to="/terms" className="hover:text-[#3EF4E4] transition-colors">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

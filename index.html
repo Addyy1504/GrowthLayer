@@ -9,12 +9,12 @@
     <!-- 🌟 Title -->
     <title>GrowthLayer Studio | Engineering Brands for the Digital Age</title>
 
-    <!-- 🧭 Favicon -->
-     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
-
-
-
+    <!-- 🧭 Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+    <link rel="apple-touch-icon" href="/favicon-512x512.png" />
+    <meta name="theme-color" content="#3EF4E4" />
 
     <!-- 📝 SEO Meta -->
     <meta
@@ -28,9 +28,9 @@
     <meta name="author" content="GrowthLayer Studio" />
     <meta name="robots" content="index, follow" />
 
-    <!-- 🌐 Open Graph (Facebook / LinkedIn) -->
+    <!-- 🌐 Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://growthlayer.studio/" />
+    <meta property="og:url" content="https://www.growthlayerstudio.in/" />
     <meta
       property="og:title"
       content="GrowthLayer Studio | Engineering Brands for the Digital Age"
@@ -39,7 +39,7 @@
       property="og:description"
       content="We craft powerful brand experiences through strategy, design, and automation."
     />
-    <meta property="og:image" content="/assets/og-image.png" />
+    <meta property="og:image" content="https://www.growthlayerstudio.in/favicon-512x512.png" />
 
     <!-- 🐦 Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -48,18 +48,40 @@
       name="twitter:description"
       content="We craft powerful brand experiences through strategy, design, and automation."
     />
-    <meta name="twitter:image" content="/assets/og-image.png" />
+    <meta name="twitter:image" content="https://www.growthlayerstudio.in/favicon-512x512.png" />
 
-    <!-- 🪄 Theme & Branding -->
-    <meta name="theme-color" content="#3EF4E4" />
+    <!-- 🪄 PWA Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- ⚡ Preload Fonts or Important Assets (Optional) -->
+    <!-- ⚡ Preload Fonts (Optional) -->
     <!-- <link rel="preload" href="/fonts/YourFont.woff2" as="font" type="font/woff2" crossorigin> -->
-
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ✨ Tab Nudge Script -->
+    <script>
+      const defaultTitle = document.title;
+      const nudgeMessages = [
+        " Hey, still there?",
+        " Let’s build something great!",
+        " Growth waits for no one.",
+        " Crafting digital magic..."
+      ];
+      let interval;
+      window.addEventListener("blur", () => {
+        let i = 0;
+        interval = setInterval(() => {
+          document.title = nudgeMessages[i % nudgeMessages.length];
+          i++;
+        }, 3800);
+      });
+      window.addEventListener("focus", () => {
+        clearInterval(interval);
+        document.title = defaultTitle;
+      });
+    </script>
   </body>
 </html>
