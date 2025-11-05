@@ -5,7 +5,7 @@ import Logo from '../assets/Logo.png';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
 
