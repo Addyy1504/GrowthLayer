@@ -1,224 +1,286 @@
-import { useEffect } from 'react';
-import { motion, easeOut, Variants } from 'framer-motion';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Footer from '../components/Footer';
-import HeroImage from '../assets/ManufacturingHero.png';
-import ExampleMockup from '../assets/AnchorFab.png';
-import CountUp from 'react-countup';
+import { useEffect } from "react";
+import { motion, easeOut, Variants } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
+import CountUp from "react-countup";
+import Footer from "../components/Footer";
+import HeroImage from "../assets/ManufacturingHero.png";
+import ExampleMockup from "../assets/AnchorFab.png";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: easeOut },
+    transition: { delay: i * 0.15, duration: 0.7, ease: easeOut },
   }),
 };
 
 export default function ManufacturingEcom() {
   const navigate = useNavigate();
   const location = useLocation();
-
   useEffect(() => window.scrollTo(0, 0), []);
 
   const handleScrollToContact = () => {
-    if (location.pathname === '/') {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === "/") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate('/');
+      navigate("/");
       setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
       }, 300);
     }
   };
 
-  const benefits = [
+  const sections = [
     {
-      title: 'Showcase Products Elegantly',
-      desc: 'Transform your offline catalog into a modern digital storefront that instantly builds trust and visibility.',
+      id: "creatives",
+      title: "GrowthLayer Creatives",
+      num: "01",
+      desc: `From industrial craftsmanship to retail polish — we make manufacturing brands look irresistible. 
+      Through reels, ad campaigns, and visual storytelling, we help products feel premium, purposeful, and people-centric.`,
+      quote:
+        "We turn catalogs into conversations — and every product into a story worth sharing.",
     },
     {
-      title: 'Attract Quality Leads',
-      desc: 'Integrated enquiry forms and WhatsApp flows simplify communication and bring in ready-to-convert buyers.',
+      id: "web",
+      title: "GrowthLayer Web",
+      num: "02",
+      desc: `Your website is the new factory floor. We build scalable, fast, and responsive sites 
+      that showcase your portfolio, attract B2B buyers, and drive e-commerce sales seamlessly.`,
+      points: [
+        "Dynamic product showcase pages",
+        "Lead & WhatsApp integrations",
+        "SEO + analytics for visibility",
+      ],
     },
     {
-      title: 'Boost Brand Credibility',
-      desc: 'A polished, SEO-ready website positions your business as a professional and dependable brand.',
+      id: "labs",
+      title: "GrowthLayer Labs",
+      num: "03",
+      desc: `GrowthLayer Labs automates business follow-ups and client touchpoints. 
+      We connect enquiry data, WhatsApp, and dashboards — ensuring you never lose a potential lead again.`,
+      points: [
+        "Automated WhatsApp replies to new leads",
+        "Smart re-engagement reminders after inactivity",
+        "Centralized lead sheet with live tracking",
+        "Performance dashboards for every campaign",
+      ],
     },
-    {
-      title: 'Automate Follow-ups',
-      desc: 'Re-engage interested clients automatically through smart WhatsApp and email sequences.',
-    },
-  ];
-
-  const flow = [
-    { title: 'Product Upload Automation', desc: 'Easily update your online catalog without redesigning the website.' },
-    { title: 'WhatsApp Enquiry Flow', desc: 'Enable instant customer queries that convert faster than traditional forms.' },
-    { title: 'Lead Dashboard', desc: 'All enquiries get logged into Google Sheets for clear follow-up tracking.' },
-    { title: 'Re-engagement Reminders', desc: 'Automate loyalty messages and reactivation offers for returning clients.' },
   ];
 
   return (
     <div className="bg-white text-black min-h-screen flex flex-col justify-between overflow-hidden">
-
-      {/* 🏭 HERO SECTION */}
-      <section className="bg-[#F8F9FA] pt-36 pb-24">
+      
+      {/* 🏁 HERO */}
+      <section className="bg-[#F8F9FA] pt-24 md:pt-36 pb-16 md:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-              Empowering Manufacturing & E-Commerce<span className="text-[#3EF4E4]">.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl">
-              GrowthLayer helps product-based businesses go digital — through <span className="font-semibold">custom-coded websites and WhatsApp automations</span> that replace old catalogs with engaging, lead-driven digital experiences.
-            </p>
-          </motion.div>
-
+          {/* 🖼️ IMAGE */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             custom={1}
-            className="w-full h-80 rounded-2xl overflow-hidden border border-gray-200 shadow-md"
+            className="order-2 md:order-1 relative flex justify-center"
           >
-            <img src={HeroImage} alt="Manufacturing Hero" className="w-full h-full object-cover" />
+            <div className="absolute -top-12 -right-12 w-[130%] h-[130%] bg-[#3EF4E4]/15 blur-3xl rounded-full -z-10"></div>
+            <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_40px_rgba(62,244,228,0.15)] w-full max-w-md md:max-w-none">
+              <img
+                src={HeroImage}
+                alt="Manufacturing Growth"
+                className="w-full h-[260px] sm:h-[340px] md:h-[450px] object-cover object-center"
+              />
+            </div>
+          </motion.div>
+
+          {/* ✨ TEXT */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="order-1 md:order-2 text-center md:text-left"
+          >
+            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 md:mb-8">
+              Rethinking Manufacturing & E-Commerce Growth
+              <span className="text-[#3EF4E4]">.</span>
+            </h1>
+
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0">
+              GrowthLayer Studio helps manufacturing and e-commerce brands evolve from product catalogs 
+              to digital ecosystems — with content, websites, and automations that scale your sales process.
+            </p>
+
+            <button
+              onClick={handleScrollToContact}
+              className="px-8 py-3 bg-[#3EF4E4] text-black rounded-full font-semibold shadow-md hover:scale-105 transition-transform"
+            >
+              Let’s Talk Growth
+            </button>
           </motion.div>
         </div>
       </section>
 
-      {/* 💡 WHY GO DIGITAL */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2
+      {/* ✍️ INTRO */}
+      <section className="py-10 md:py-16 bg-white text-gray-700">
+        <div className="max-w-4xl mx-auto px-6 space-y-6 text-base md:text-lg leading-relaxed">
+          <p>
+            At <span className="font-semibold text-black">GrowthLayer Studio</span>, we engineer 
+            digital systems that empower manufacturers, wholesalers, and e-commerce brands 
+            to grow without adding extra workload.
+          </p>
+          <p>
+            Our strategy spans three pillars — <span className="font-semibold">Creatives</span>, 
+            <span className="font-semibold"> Web</span>, and 
+            <span className="font-semibold"> Labs</span> — 
+            aligning your brand story, online presence, and sales automation into one seamless experience.
+          </p>
+        </div>
+      </section>
+
+      {/* 🔹 LAYER SECTIONS */}
+      {sections.map((s, i) => (
+        <section
+          key={s.id}
+          className={`py-12 md:py-20 ${i % 2 === 0 ? "bg-white" : "bg-[#F8F9FA]"} transition-all`}
+        >
+          <div
+            className={`max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center ${
+              i % 2 !== 0 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+            {/* TEXT */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp}
+              viewport={{ once: true }}
+              className="space-y-5"
+            >
+              <div className="flex items-center gap-4 mb-2">
+                <div className="relative bg-[#3EF4E4] text-black font-bold rounded-full h-10 w-10 flex items-center justify-center shadow-sm">
+                  {s.num}
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black">{s.title}</h2>
+              </div>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">{s.desc}</p>
+
+              {s.quote && (
+                <blockquote className="bg-[#E6FFFB]/60 border-l-4 border-[#3EF4E4] p-5 rounded-xl italic text-gray-600 text-base">
+                  {s.quote}
+                </blockquote>
+              )}
+              {s.points && (
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {s.points.map((p, idx) => (
+                    <li key={idx}>{p}</li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+
+            {/* VISUAL */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp}
+              viewport={{ once: true }}
+              className="relative flex justify-center items-center"
+            >
+              <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
+              <div className="w-full h-[250px] md:h-[340px] rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_40px_rgba(62,244,228,0.1)] bg-gradient-to-br from-white via-[#F8F9FA] to-[#E8FFFB] flex items-center justify-center">
+                <p className="text-gray-400 italic text-center max-w-xs">
+                  Visuals for <span className="text-[#3EF4E4] font-semibold">{s.title}</span> go here
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      ))}
+
+      {/* 💼 CASE STUDY */}
+      <section className="py-20 md:py-28 bg-[#0D0D0D] text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          {/* IMAGE SIDE */}
+          <motion.div
             initial="hidden"
             whileInView="visible"
             variants={fadeUp}
-            className="text-3xl md:text-4xl font-bold mb-20"
+            viewport={{ once: true }}
+            className="relative order-2 md:order-1 flex justify-center"
           >
-            Why Go Digital?
-          </motion.h2>
+            <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
+            <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-lg md:max-w-xl">
+              <img
+                src={ExampleMockup}
+                alt="Anchor Fab Case Study"
+                className="w-full h-[320px] md:h-[440px] object-cover"
+              />
+            </div>
+          </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
-            {benefits.map((b, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="relative p-8 rounded-3xl bg-[#3EF4E4] text-black border border-transparent 
-                           shadow-[0_6px_15px_rgba(62,244,228,0.25)]
-                           hover:shadow-[0_15px_40px_rgba(62,244,228,0.4)]
-                           transition-all duration-500 transform hover:-translate-y-3"
-              >
-                <div className="absolute -top-6 left-6 bg-white text-black text-2xl md:text-3xl font-bold 
-                                rounded-full h-12 w-12 flex items-center justify-center 
-                                shadow-md border border-[#3EF4E4]/40">
-                  {(i + 1).toString().padStart(2, '0')}
-                </div>
-                <div className="pt-6">
-                  <h3 className="text-lg md:text-xl font-semibold mb-3 mt-4">{b.title}</h3>
-                  <p className="text-gray-800 text-sm md:text-base leading-relaxed">{b.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* TEXT SIDE */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            viewport={{ once: true }}
+            className="order-1 md:order-2 text-center md:text-left md:pl-4"
+          >
+            <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-10 leading-tight">
+              From Catalogs to Conversions<span className="text-[#3EF4E4]">.</span>
+            </h2>
+
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-12 md:mb-14 max-w-lg mx-auto md:mx-0">
+              Anchor Fab, a B2B apparel manufacturer, relied on offline catalogs and word-of-mouth.  
+              GrowthLayer delivered a custom-coded website with WhatsApp integration and lead automation — 
+              turning every visitor into a measurable enquiry and every enquiry into an opportunity.
+            </p>
+
+            <div className="grid grid-cols-3 gap-6 md:gap-8 justify-center">
+              {[
+                { value: 2, suffix: "x", label: "Leads Generated" },
+                { value: 100, suffix: "%", label: "Automated Follow-ups" },
+                { value: 3, suffix: "x", label: "Faster Response Time" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-[#101010] rounded-2xl border border-[#3EF4E4]/30 p-6 text-center hover:border-[#3EF4E4] transition-all shadow-[0_0_25px_rgba(62,244,228,0.08)] hover:shadow-[0_0_45px_rgba(62,244,228,0.2)]"
+                >
+                  <h3 className="text-4xl md:text-5xl font-black text-[#3EF4E4] mb-2">
+                    <CountUp end={stat.value} duration={2.5} enableScrollSpy scrollSpyOnce />
+                    {stat.suffix}
+                  </h3>
+                  <p className="text-gray-400 text-sm md:text-base font-medium">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
+
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#3EF4E4]/5 via-transparent to-[#3EF4E4]/5 blur-3xl opacity-40"></div>
       </section>
 
-      {/* 🧵 EXAMPLE WEBSITE */}
-      <section className="py-24 bg-[#F8F9FA] text-center">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          className="text-4xl md:text-5xl font-black mb-14"
-        >
-          Example: Anchor Fab Website <span className="text-[#3EF4E4]">.</span>
-        </motion.h2>
-
-        <div className="relative mx-auto mb-20 max-w-5xl rounded-3xl overflow-hidden border border-gray-200 shadow-lg">
-          <img
-            src={ExampleMockup}
-            alt="Anchor Fab Website"
-            className="w-full h-[500px] object-cover opacity-95 hover:opacity-100 transition-all duration-500"
-          />
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {flow.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="bg-white border border-gray-200 rounded-3xl shadow-sm hover:shadow-md 
-                         hover:border-[#3EF4E4] transition-all p-8 text-left relative"
-            >
-              <div className="absolute -top-5 left-5 bg-[#3EF4E4] text-black font-bold rounded-full w-10 h-10 flex items-center justify-center text-lg shadow-md">
-                {(i + 1).toString().padStart(2, '0')}
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3 mt-4">{item.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 📈 RESULTS SECTION */}
-      <section className="relative bg-[#0D0D0D] py-28 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            How It Helped Businesses<span className="text-[#3EF4E4]">.</span>
-          </h2>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-20 leading-relaxed">
-            Manufacturing and e-commerce brands that adopted GrowthLayer solutions saw stronger lead pipelines, faster enquiries, and measurable visibility gains.
-          </p>
-
-          <div className="grid sm:grid-cols-3 gap-10">
-            {[
-              { value: 2, suffix: 'x', label: 'Increase in Quality Leads' },
-              { value: 50, suffix: '%', label: 'Faster Enquiry Responses' },
-              { value: 3, suffix: 'x', label: 'Higher Engagement Rate' },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.15 }}
-                viewport={{ once: true }}
-                className="bg-[#101010] rounded-3xl border border-[#3EF4E4]/30 hover:border-[#3EF4E4] transition-all 
-                           shadow-[0_0_30px_rgba(62,244,228,0.05)] hover:shadow-[0_0_50px_rgba(62,244,228,0.15)]
-                           p-10 text-center transform hover:-translate-y-2 duration-500"
-              >
-                <h3 className="text-6xl md:text-7xl font-black text-[#3EF4E4] mb-4">
-                  <CountUp end={stat.value} duration={2.5} enableScrollSpy scrollSpyOnce />
-                  {stat.suffix}
-                </h3>
-                <p className="text-gray-300 text-lg font-medium">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 🧲 CTA */}
+      {/* CTA */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         variants={fadeUp}
         viewport={{ once: true }}
-        className="py-20 bg-[#3EF4E4] text-black text-center"
+        className="py-12 md:py-20 bg-[#3EF4E4] text-black text-center"
       >
-        <h2 className="text-4xl font-bold mb-4">
-          Let’s Digitize Your Manufacturing or E-Commerce Brand.
+        <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          Let’s Build Your Growth Layer Next.
         </h2>
-        <p className="text-lg max-w-2xl mx-auto mb-8 opacity-90">
-          Build your digital presence with GrowthLayer — websites that attract, automations that convert.
+        <p className="text-base md:text-lg max-w-2xl mx-auto mb-6 opacity-90">
+          Ready to transform your manufacturing or e-commerce business into a digital powerhouse?  
+          Let’s engineer your next growth leap.
         </p>
         <button
           onClick={handleScrollToContact}
-          className="px-10 py-4 bg-black text-white rounded-full font-bold hover:scale-105 transition-transform"
+          className="px-8 md:px-10 py-3 md:py-4 bg-black text-white rounded-full font-bold hover:scale-105 transition-transform"
         >
           Get Started
         </button>

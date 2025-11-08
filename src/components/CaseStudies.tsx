@@ -2,18 +2,34 @@ import { useEffect, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// ✅ Import images directly from assets folder
+import SalonImage from "../assets/salon.png";
+import RestaurantImage from "../assets/restaurant.png";
+import ManufacturerImage from "../assets/manufacturer.png";
+import RealEstateImage from "../assets/realestate.png";
+
 export default function CaseStudies() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // ✅ trigger only once
+        }
+      },
+      {
+        threshold: 0.05,     // ✅ trigger early
+        rootMargin: "150px", // ✅ triggers before entering
+      }
     );
+
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
 
   const cases = [
     {
@@ -22,8 +38,8 @@ export default function CaseStudies() {
         "Salons often rely on word-of-mouth and walk-ins, which limits consistent growth. A strong digital presence can help attract new clients, simplify appointment booking, and boost retention through automated feedback and re-engagement systems.",
       tags: ["Salons", "Automation", "Web Design", "CRM"],
       accent: "#3EF4E4",
-      link: "/case-studies/looks-salon", // ✅ Already exists
-      image: "/assets/salon.png",
+      link: "/case-studies/looks-salon",
+      image: SalonImage,
     },
     {
       title: "Restaurants & Cafés",
@@ -31,8 +47,8 @@ export default function CaseStudies() {
         "Restaurants face challenges with customer retention and visibility. A well-designed website paired with a digital menu lets customers explore offerings easily, while WhatsApp automation can handle reviews, loyalty offers, and repeat visit incentives effortlessly.",
       tags: ["Restaurant", "Digital Menu", "Automation", "WhatsApp"],
       accent: "#3EF4E4",
-      link: "/case-studies/restaurant", // ✅ Updated route
-      image: "/assets/restaurant.png",
+      link: "/case-studies/restaurant",
+      image: RestaurantImage,
     },
     {
       title: "Manufacturers & E-Commerce Brands",
@@ -40,8 +56,8 @@ export default function CaseStudies() {
         "Manufacturers and product-based businesses often lack a modern digital storefront. We help them go online through B2B or D2C websites, Shopify stores, and automated inquiry systems — transforming catalog-based sales into scalable online conversions.",
       tags: ["Manufacturing", "E-Commerce", "Shopify", "Automation"],
       accent: "#3EF4E4",
-      link: "/case-studies/anchor-fab", // ✅ Updated route
-      image: "/assets/manufacturer.png",
+      link: "/case-studies/anchor-fab",
+      image: ManufacturerImage,
     },
     {
       title: "Real Estate & Construction",
@@ -50,7 +66,7 @@ export default function CaseStudies() {
       tags: ["Real Estate", "Lead Generation", "Web Design"],
       accent: "#3EF4E4",
       link: "/case-studies/real-estate",
-      image: "/assets/realestate.png",
+      image: RealEstateImage,
     },
   ];
 
