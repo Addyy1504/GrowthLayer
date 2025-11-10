@@ -6,6 +6,11 @@ import Footer from "../components/Footer";
 import HeroImage from "../assets/real-estate-hero.jpg";
 import Munjal from "../assets/munjal.png";
 
+// 🏗️ New section visuals
+import RealEstateCreatives from "../assets/CreativesVisual4.png";
+import RealEstateWeb from "../assets/WebVisual4.png";
+import RealEstateLabs from "../assets/LabsVisual.png";
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 25 },
   visible: (i: number = 0) => ({
@@ -41,6 +46,7 @@ export default function RealEstate() {
       into lifestyle aspirations that buyers remember.`,
       quote:
         "Your next customer isn’t looking for a property — they’re looking for a story they can move into.",
+      image: RealEstateCreatives,
     },
     {
       id: "web",
@@ -53,6 +59,7 @@ export default function RealEstate() {
         "Integrated WhatsApp + Call actions",
         "Lead tracking & analytics dashboard",
       ],
+      image: RealEstateWeb,
     },
     {
       id: "labs",
@@ -65,14 +72,17 @@ export default function RealEstate() {
         "Lead qualification via Google Sheets + dashboard",
         "Follow-ups and site visit reminders",
       ],
+      image: RealEstateLabs,
     },
   ];
 
   return (
     <div className="bg-white text-black min-h-screen flex flex-col justify-between overflow-hidden">
+      
       {/* 🏁 HERO */}
       <section className="bg-[#F8F9FA] pt-24 md:pt-36 pb-16 md:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          
           {/* 🖼️ IMAGE SIDE */}
           <motion.div
             initial="hidden"
@@ -142,9 +152,7 @@ export default function RealEstate() {
       {sections.map((s, i) => (
         <section
           key={s.id}
-          className={`py-12 md:py-20 ${
-            i % 2 === 0 ? "bg-white" : "bg-[#F8F9FA]"
-          } transition-all`}
+          className={`py-12 md:py-20 ${i % 2 === 0 ? "bg-white" : "bg-[#F8F9FA]"} transition-all`}
         >
           <div
             className={`max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center ${
@@ -166,9 +174,7 @@ export default function RealEstate() {
                 <h2 className="text-2xl md:text-3xl font-black">{s.title}</h2>
               </div>
 
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-                {s.desc}
-              </p>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">{s.desc}</p>
 
               {s.quote && (
                 <blockquote className="bg-[#E6FFFB]/60 border-l-4 border-[#3EF4E4] p-5 rounded-xl italic text-gray-600 text-base">
@@ -195,9 +201,11 @@ export default function RealEstate() {
             >
               <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
               <div className="w-full h-[250px] md:h-[340px] rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_40px_rgba(62,244,228,0.1)] bg-gradient-to-br from-white via-[#F8F9FA] to-[#E8FFFB] flex items-center justify-center">
-                <p className="text-gray-400 italic text-center max-w-xs">
-                  Visuals for <span className="text-[#3EF4E4] font-semibold">{s.title}</span> go here
-                </p>
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="w-full h-full object-cover rounded-3xl"
+                />
               </div>
             </motion.div>
           </div>
@@ -206,26 +214,7 @@ export default function RealEstate() {
 
       {/* 💼 CASE STUDY — KUMAR CONSTRUCTION */}
 <section className="py-20 md:py-28 bg-[#0D0D0D] text-white relative overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-    
-    {/* 🖼️ IMAGE SIDE */}
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      variants={fadeUp}
-      viewport={{ once: true }}
-      className="relative order-2 md:order-1 flex justify-center"
-    >
-      <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
-      <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 
-                      shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-lg md:max-w-xl">
-        <img
-          src={Munjal} // ⚙️ Replace with Kumar image import
-          alt="Kumar Construction Website"
-          className="w-full h-[320px] md:h-[440px] object-cover"
-        />
-      </div>
-    </motion.div>
+  <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start md:items-center">
 
     {/* ✨ TEXT SIDE */}
     <motion.div
@@ -233,23 +222,51 @@ export default function RealEstate() {
       whileInView="visible"
       variants={fadeUp}
       viewport={{ once: true }}
-      className="order-1 md:order-2 text-center md:text-left md:pl-4"
+      className="order-1 md:order-2 text-center md:text-left md:pl-4 flex flex-col justify-between h-full"
     >
-      <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-10 leading-tight">
-        Crafting Legacy into Digital Presence
-        <span className="text-[#3EF4E4]">.</span>
-      </h2>
+      {/* 🧠 Text Content */}
+      <div>
+        <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-10 leading-tight">
+          Crafting Legacy into Digital Presence
+          <span className="text-[#3EF4E4]">.</span>
+        </h2>
 
-      <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-12 md:mb-14 max-w-lg mx-auto md:mx-0">
-        <span className="font-semibold text-white">Kumar Construction</span> — one of Delhi’s
-        oldest P.O.P contractors — carried decades of craftsmanship offline.  
-        <br /><br />
-        GrowthLayer Studio built them a sleek, modern website that blends heritage with 
-        digital finesse — creating a web identity that looks as refined as the ceilings they sculpt.
-      </p>
+        <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 md:mb-14 max-w-lg mx-auto md:mx-0">
+          <span className="font-semibold text-white">Kumar Construction</span> — one of Delhi’s
+          oldest P.O.P contractors — carried decades of craftsmanship offline.  
+          <br /><br />
+          GrowthLayer Studio built them a sleek, modern website that blends heritage with 
+          digital finesse — creating a web identity that looks as refined as the ceilings they sculpt.
+        </p>
+      </div>
 
-      {/* 📊 STATS */}
-      <div className="grid grid-cols-3 gap-6 md:gap-8 justify-center">
+      {/* 🖼️ IMAGE (Mobile below text, Desktop on left) */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeUp}
+        viewport={{ once: true }}
+        className="block md:hidden relative flex justify-center mb-10"
+      >
+        <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
+        <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 
+                        shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-md">
+          <img
+            src={Munjal}
+            alt="Kumar Construction Website"
+            className="w-full h-[480px] sm:h-[520px] object-cover"
+          />
+        </div>
+      </motion.div>
+
+      {/* 📊 Stats Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeUp}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
+      >
         {[
           { value: 70, suffix: "%", label: "Brand Recall ↑" },
           { value: 2, suffix: "x", label: "Lead Quality" },
@@ -263,7 +280,8 @@ export default function RealEstate() {
             viewport={{ once: true }}
             className="bg-[#101010] rounded-2xl border border-[#3EF4E4]/30 
                        p-6 text-center hover:border-[#3EF4E4] transition-all
-                       shadow-[0_0_25px_rgba(62,244,228,0.08)] hover:shadow-[0_0_45px_rgba(62,244,228,0.2)]"
+                       shadow-[0_0_25px_rgba(62,244,228,0.08)] 
+                       hover:shadow-[0_0_45px_rgba(62,244,228,0.2)]"
           >
             <h3 className="text-4xl md:text-5xl font-black text-[#3EF4E4] mb-2">
               <CountUp end={stat.value} duration={2.5} enableScrollSpy scrollSpyOnce />
@@ -272,11 +290,29 @@ export default function RealEstate() {
             <p className="text-gray-400 text-sm md:text-base font-medium">{stat.label}</p>
           </motion.div>
         ))}
+      </motion.div>
+    </motion.div>
+
+    {/* 🖼️ IMAGE SIDE (Desktop only) */}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={fadeUp}
+      viewport={{ once: true }}
+      className="hidden md:flex relative justify-center order-2 md:order-1"
+    >
+      <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
+      <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-lg md:max-w-xl">
+        <img
+          src={Munjal}
+          alt="Kumar Construction Website"
+          className="w-full h-[660px] object-cover"
+        />
       </div>
     </motion.div>
   </div>
 
-  {/* 🌊 Subtle Glow Background */}
+  {/* 🌊 Background Glow */}
   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#3EF4E4]/5 via-transparent to-[#3EF4E4]/5 blur-3xl opacity-40"></div>
 </section>
 

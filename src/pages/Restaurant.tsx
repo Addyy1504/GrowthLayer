@@ -6,6 +6,11 @@ import Footer from "../components/Footer";
 import HeroImage from "../assets/RestaurantHero.png";
 import RestaurantMockup from "../assets/RestaurantMockup.png";
 
+// 🌆 New visual imports
+import CreativesVisual from "../assets/CreativesVisual2.png";
+import WebVisual from "../assets/WebVisual2.png";
+import LabsVisual from "../assets/LabsVisual.png";
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 25 },
   visible: (i: number = 0) => ({
@@ -40,6 +45,7 @@ export default function Restaurant() {
       using cinematic reels, UGC-style storytelling, and high-converting ad creatives that make customers crave the experience.`,
       quote:
         "We turn your restaurant’s atmosphere into an online appetite — one scroll at a time.",
+      image: CreativesVisual,
     },
     {
       id: "web",
@@ -52,6 +58,7 @@ export default function Restaurant() {
         "Integrated review & feedback section",
         "SEO + analytics setup for local discovery",
       ],
+      image: WebVisual,
     },
     {
       id: "labs",
@@ -65,6 +72,7 @@ export default function Restaurant() {
         "Centralized customer data on Google Sheets",
         "Performance dashboard with real-time insights",
       ],
+      image: LabsVisual,
     },
   ];
 
@@ -74,6 +82,7 @@ export default function Restaurant() {
       {/* 🏁 HERO */}
       <section className="bg-[#F8F9FA] pt-24 md:pt-36 pb-16 md:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          
           {/* 🖼️ IMAGE SIDE */}
           <motion.div
             initial="hidden"
@@ -190,81 +199,100 @@ export default function Restaurant() {
             >
               <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
               <div className="w-full h-[250px] md:h-[340px] rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_40px_rgba(62,244,228,0.1)] bg-gradient-to-br from-white via-[#F8F9FA] to-[#E8FFFB] flex items-center justify-center">
-                <p className="text-gray-400 italic text-center max-w-xs">
-                  Visuals for <span className="text-[#3EF4E4] font-semibold">{s.title}</span> go here
-                </p>
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="w-full h-full object-cover rounded-3xl"
+                />
               </div>
             </motion.div>
           </div>
         </section>
       ))}
 
-      {/* 💼 CASE STUDY */}
-      <section className="py-20 md:py-28 bg-[#0D0D0D] text-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          {/* 🖼️ IMAGE SIDE */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeUp}
-            viewport={{ once: true }}
-            className="relative order-2 md:order-1 flex justify-center"
-          >
-            <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
-            <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-lg md:max-w-xl">
-              <img
-                src={RestaurantMockup}
-                alt="Restaurant Case Study"
-                className="w-full h-[320px] md:h-[440px] object-cover"
-              />
-            </div>
-          </motion.div>
+      {/* 💼 CASE STUDY — RESTAURANT */}
+<section className="py-20 md:py-28 bg-[#0D0D0D] text-white relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    
+    {/* 🖼️ IMAGE SIDE */}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={fadeUp}
+      viewport={{ once: true }}
+      className="relative order-2 md:order-1 flex justify-center"
+    >
+      <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-[#3EF4E4]/10 blur-3xl rounded-full -z-10"></div>
+      <div className="rounded-3xl overflow-hidden border border-[#3EF4E4]/30 
+                      shadow-[0_0_50px_rgba(62,244,228,0.25)] w-full max-w-lg md:max-w-xl">
+        <img
+          src={RestaurantMockup}
+          alt="Restaurant Case Study"
+          className="w-full h-[320px] md:h-[440px] object-cover"
+        />
+      </div>
+    </motion.div>
 
-          {/* ✨ TEXT SIDE */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeUp}
-            viewport={{ once: true }}
-            className="order-1 md:order-2 text-center md:text-left md:pl-4"
-          >
-            <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-10 leading-tight">
-              Turning Tables into Loyalty Systems<span className="text-[#3EF4E4]">.</span>
-            </h2>
+    {/* ✨ TEXT SIDE */}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={fadeUp}
+      viewport={{ once: true }}
+      className="order-1 md:order-2 text-center md:text-left md:pl-4"
+    >
+      <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-10 leading-tight">
+        Turning Tables into Loyalty Systems
+        <span className="text-[#3EF4E4]">.</span>
+      </h2>
 
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-12 md:mb-14 max-w-lg mx-auto md:mx-0">
-              Before GrowthLayer, our client’s restaurant was manually tracking repeat diners and missing
-              opportunities to re-engage. Within weeks, automation took over — sending feedback requests,
-              personalized offers, and building customer loyalty on autopilot.
-            </p>
+      <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-12 md:mb-14 max-w-lg mx-auto md:mx-0">
+        Before GrowthLayer, our client’s restaurant was manually tracking repeat diners and missing
+        opportunities to re-engage. Within weeks, automation took over — sending feedback requests,
+        personalized offers, and building customer loyalty on autopilot.
+      </p>
+    </motion.div>
+  </div>
 
-            <div className="grid grid-cols-3 gap-6 md:gap-8 justify-center">
-              {[
-                { value: 35, suffix: "%", label: "Increase in Repeat Visits" },
-                { value: 100, suffix: "%", label: "Automated Feedback Collection" },
-                { value: 3, suffix: "x", label: "Improved Retention Rate" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-[#101010] rounded-2xl border border-[#3EF4E4]/30 p-6 text-center hover:border-[#3EF4E4] transition-all shadow-[0_0_25px_rgba(62,244,228,0.08)] hover:shadow-[0_0_45px_rgba(62,244,228,0.2)]"
-                >
-                  <h3 className="text-4xl md:text-5xl font-black text-[#3EF4E4] mb-2">
-                    <CountUp end={stat.value} duration={2.5} enableScrollSpy scrollSpyOnce />
-                    {stat.suffix}
-                  </h3>
-                  <p className="text-gray-400 text-sm md:text-base font-medium">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+  {/* 📊 STATS — Moved Below the Text & Image */}
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    variants={fadeUp}
+    viewport={{ once: true }}
+    className="mt-16 md:mt-20 flex justify-center"
+  >
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 w-full max-w-5xl px-6">
+      {[
+        { value: 35, suffix: "%", label: "Increase in Repeat Visits" },
+        { value: 100, suffix: "%", label: "Automated Feedback Collection" },
+        { value: 3, suffix: "x", label: "Improved Retention Rate" },
+      ].map((stat, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: i * 0.1 }}
+          viewport={{ once: true }}
+          className="bg-[#101010] rounded-2xl border border-[#3EF4E4]/30 
+                     p-6 text-center hover:border-[#3EF4E4] transition-all
+                     shadow-[0_0_25px_rgba(62,244,228,0.08)] 
+                     hover:shadow-[0_0_45px_rgba(62,244,228,0.2)]"
+        >
+          <h3 className="text-4xl md:text-5xl font-black text-[#3EF4E4] mb-2">
+            <CountUp end={stat.value} duration={2.5} enableScrollSpy scrollSpyOnce />
+            {stat.suffix}
+          </h3>
+          <p className="text-gray-400 text-sm md:text-base font-medium">{stat.label}</p>
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
 
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#3EF4E4]/5 via-transparent to-[#3EF4E4]/5 blur-3xl opacity-40"></div>
-      </section>
+  {/* 🌊 Subtle Glow Background */}
+  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#3EF4E4]/5 via-transparent to-[#3EF4E4]/5 blur-3xl opacity-40"></div>
+</section>
+
 
       {/* CTA */}
       <motion.section
