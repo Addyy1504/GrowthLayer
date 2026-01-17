@@ -21,8 +21,8 @@ export default function CaseStudies() {
         }
       },
       {
-        threshold: 0.05,     // ✅ trigger early
-        rootMargin: "150px", // ✅ triggers before entering
+        threshold: 0.05,
+        rootMargin: "150px",
       }
     );
 
@@ -30,13 +30,13 @@ export default function CaseStudies() {
     return () => observer.disconnect();
   }, []);
 
-
+  // ✅ Updated: minimal, punchy, service-aligned copy (Creatives / Web / Labs)
   const cases = [
     {
-      title: "Salon Businesses",
+      title: "Salons",
       description:
-        "Salons often rely on word-of-mouth and walk-ins, which limits consistent growth. A strong digital presence can help attract new clients, simplify appointment booking, and boost retention through automated feedback and re-engagement systems.",
-      tags: ["Salons", "Automation", "Web Design", "CRM"],
+        "Reels that feel premium. A booking-first website. Retention automations that bring clients back.",
+      tags: ["Creatives", "Website", "Retention"],
       accent: "#3EF4E4",
       link: "/case-studies/looks-salon",
       image: SalonImage,
@@ -44,17 +44,17 @@ export default function CaseStudies() {
     {
       title: "Restaurants & Cafés",
       description:
-        "Restaurants face challenges with customer retention and visibility. A well-designed website paired with a digital menu lets customers explore offerings easily, while WhatsApp automation can handle reviews, loyalty offers, and repeat visit incentives effortlessly.",
-      tags: ["Restaurant", "Digital Menu", "Automation", "WhatsApp"],
+        "Content that makes people crave. A fast menu/booking website. Loyalty + feedback flows on autopilot.",
+      tags: ["Creatives", "Website", "Automation"],
       accent: "#3EF4E4",
       link: "/case-studies/restaurant",
       image: RestaurantImage,
     },
     {
-      title: "Manufacturers & E-Commerce Brands",
+      title: "Manufacturing & E-Commerce",
       description:
-        "Manufacturers and product-based businesses often lack a modern digital storefront. We help them go online through B2B or D2C websites, Shopify stores, and automated inquiry systems — transforming catalog-based sales into scalable online conversions.",
-      tags: ["Manufacturing", "E-Commerce", "Shopify", "Automation"],
+        "Product content that sells. A conversion-first site. Follow-ups, lead tracking, and re-engagement automated.",
+      tags: ["Creatives", "Website", "Labs"],
       accent: "#3EF4E4",
       link: "/case-studies/anchor-fab",
       image: ManufacturerImage,
@@ -62,8 +62,8 @@ export default function CaseStudies() {
     {
       title: "Real Estate & Construction",
       description:
-        "Developers and builders need credibility and visibility. Through high-impact websites with project galleries, lead capture systems, and automated WhatsApp follow-ups, we help real estate businesses convert inquiries into site visits faster.",
-      tags: ["Real Estate", "Lead Generation", "Web Design"],
+        "Project storytelling that builds trust. A lead-first website. Automated follow-ups that drive site visits.",
+      tags: ["Creatives", "Website", "Lead System"],
       accent: "#3EF4E4",
       link: "/case-studies/real-estate",
       image: RealEstateImage,
@@ -71,11 +71,7 @@ export default function CaseStudies() {
   ];
 
   return (
-    <section
-      id="work"
-      ref={sectionRef}
-      className="relative py-28 bg-white text-black overflow-hidden"
-    >
+    <section id="work" ref={sectionRef} className="relative py-28 bg-white text-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* ✨ Section Heading */}
         <h2
@@ -90,8 +86,7 @@ export default function CaseStudies() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          From local salons to large manufacturers, we design websites and
-          automations tailored to every industry’s real challenges.
+          Same GrowthLayer system — tailored for each industry: Creatives, Web, and Labs.
         </p>
 
         {/* 💼 Industry Cards */}
@@ -100,9 +95,7 @@ export default function CaseStudies() {
             <div
               key={project.title}
               className={`group relative rounded-3xl border border-gray-200 overflow-hidden bg-white hover:shadow-2xl transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
             >
@@ -113,17 +106,14 @@ export default function CaseStudies() {
                   alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
 
               {/* 📄 Text Content */}
               <div className="p-8 relative z-10">
-                <h3 className="text-3xl font-bold mb-4 text-[#1C1C1C]">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {project.description}
-                </p>
+                <h3 className="text-3xl font-bold mb-3 text-[#1C1C1C]">{project.title}</h3>
+
+                <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
@@ -154,11 +144,7 @@ export default function CaseStudies() {
           className={`mt-12 text-center transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
-        >
-          <p className="text-2xl md:text-3xl font-bold text-gray-800">
-            Building niche-focused digital ecosystems 👇
-          </p>
-        </div>
+        />
       </div>
     </section>
   );

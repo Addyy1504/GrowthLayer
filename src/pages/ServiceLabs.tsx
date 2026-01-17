@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import Pattern from '../assets/Pattern.png';
-import Footer from '../components/Footer';
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Pattern from "../assets/Pattern.png";
+import Footer from "../components/Footer";
 
 export default function ServiceLabs() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,40 +14,41 @@ export default function ServiceLabs() {
     window.scrollTo(0, 0);
   }, []);
 
+  // ✅ Updated copy (minimal, punchy, outcome-first) — layout unchanged
   const offerings = [
     {
-      number: '01',
-      title: 'Automation Systems',
+      number: "01",
+      title: "Lead & Follow-up Automation",
       description:
-        'Custom automation workflows that save time, reduce errors, and scale your operations.',
+        "Capture enquiries and follow up instantly—so leads don’t go cold.",
     },
     {
-      number: '02',
-      title: 'CRM Solutions',
+      number: "02",
+      title: "CRM & Pipeline Setup",
       description:
-        'Tailored CRM systems that manage your customer relationships and streamline sales processes.',
+        "A simple pipeline that tracks every lead, stage, and next step.",
     },
     {
-      number: '03',
-      title: 'WhatsApp Bots',
+      number: "03",
+      title: "WhatsApp Workflows",
       description:
-        'Intelligent WhatsApp bots for customer support, bookings, and automated communication.',
+        "Smart WhatsApp flows for updates, reminders, feedback, and re-engagement.",
     },
     {
-      number: '04',
-      title: 'System Integrations',
+      number: "04",
+      title: "Tool Integrations",
       description:
-        'Seamless integrations between your tools and platforms for unified business operations.',
+        "Connect Sheets, email, forms, calendars, and dashboards into one system.",
     },
   ];
 
   const handleScrollToContact = () => {
-    if (location.pathname === '/') {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === "/") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate('/');
+      navigate("/");
       setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
       }, 400);
     }
   };
@@ -59,11 +60,11 @@ export default function ServiceLabs() {
         <title>Automation & CRM Solutions | GrowthLayer Labs</title>
         <meta
           name="description"
-          content="Automate your business with GrowthLayer Labs. We build custom CRM solutions, WhatsApp bots, and system automations that save time and scale revenue."
+          content="GrowthLayer Labs builds automation, CRM pipelines, WhatsApp workflows, and integrations that help businesses follow up faster and scale without extra effort."
         />
         <meta
           name="keywords"
-          content="automation agency, CRM solutions India, WhatsApp bots, business automation, n8n workflows, HubSpot integrations, sales CRM, automation for salons, automation for e-commerce, GrowthLayer Labs"
+          content="automation agency, CRM solutions India, WhatsApp automation, business automation, n8n workflows, HubSpot integrations, sales CRM, lead follow up automation, GrowthLayer Labs"
         />
         <link rel="canonical" href="https://growthlayer.studio/services/labs" />
 
@@ -72,7 +73,7 @@ export default function ServiceLabs() {
         <meta property="og:title" content="Automation & CRM Solutions | GrowthLayer Labs" />
         <meta
           property="og:description"
-          content="We build intelligent WhatsApp bots, CRM systems, and automations that scale your business 24/7."
+          content="We build lead systems: CRM + WhatsApp workflows + automations that run 24/7."
         />
         <meta property="og:url" content="https://growthlayer.studio/services/labs" />
         <meta property="og:image" content="https://growthlayer.studio/og-image.png" />
@@ -82,7 +83,7 @@ export default function ServiceLabs() {
         <meta name="twitter:title" content="Automation & CRM Solutions | GrowthLayer Labs" />
         <meta
           name="twitter:description"
-          content="We build intelligent WhatsApp bots, CRM systems, and automations that scale your business 24/7."
+          content="We build lead systems: CRM + WhatsApp workflows + automations that run 24/7."
         />
         <meta name="twitter:image" content="https://growthlayer.studio/og-image.png" />
 
@@ -95,32 +96,30 @@ export default function ServiceLabs() {
       {/* 🪄 Hero Section */}
       <div className="min-h-screen bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-36 pb-16 text-center">
-
           <div
             className={`transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
             <h1 className="text-6xl md:text-8xl font-black mb-4">
               Labs<span className="text-[#3EF4E4]">.</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              We automate what others do manually. From WhatsApp bots to custom CRMs,
-              we build systems that scale your business without scaling your team.
+              We build systems that follow up, track leads, and bring customers back—on autopilot.
             </p>
           </div>
 
           {/* ✨ Numbered Offerings */}
           <div
             className={`mt-14 mb-0 flex flex-col md:flex-row justify-center items-center gap-14 md:gap-20 transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
             {offerings.map((item, index) => (
               <div
                 key={item.number}
                 className={`flex flex-col items-center text-center max-w-xs transition-all duration-700 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
               >
@@ -137,14 +136,14 @@ export default function ServiceLabs() {
         {/* 🌿 Pattern Divider */}
         <div
           className={`w-full mt-12 mb-14 transition-opacity duration-1000 ${
-            isVisible ? 'opacity-90' : 'opacity-0'
+            isVisible ? "opacity-90" : "opacity-0"
           }`}
           style={{
             backgroundImage: `url(${Pattern})`,
-            backgroundRepeat: 'repeat-x',
-            backgroundPosition: 'center',
-            backgroundSize: 'contain',
-            height: '80px',
+            backgroundRepeat: "repeat-x",
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+            height: "80px",
           }}
         ></div>
 
@@ -152,20 +151,20 @@ export default function ServiceLabs() {
         <section className="max-w-5xl mx-auto px-6 text-center mb-20">
           <h2
             className={`text-3xl md:text-5xl font-bold mb-6 leading-tight transition-all duration-1000 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            We don’t just build tools.
+            Less chaos.
             <br className="hidden md:block" />
-            We build <span className="text-[#3EF4E4]">systems</span> that run your business.
+            More <span className="text-[#3EF4E4]">conversions</span>.
           </h2>
           <p
             className={`text-lg md:text-xl text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            From intelligent bots to full-scale CRM & integrations, we engineer powerful
-            automations that save you hours — every single day.
+            If a lead comes in, they should get a reply. If a customer visits, they should get a follow-up.
+            We build that loop—end to end.
           </p>
         </section>
 
@@ -173,14 +172,14 @@ export default function ServiceLabs() {
         <section className="relative pb-24">
           <div
             className={`relative z-20 max-w-4xl mx-auto text-center px-6 py-20 bg-[#3EF4E4] rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-1 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-black leading-tight">
-              Ready to automate and scale?
+              Want your follow-ups automated?
             </h2>
             <p className="text-lg md:text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-              Let’s build systems that work for you 24/7 while you focus on growing your business.
+              We’ll build your CRM + workflows so your business responds fast—every time.
             </p>
             <button
               onClick={handleScrollToContact}
@@ -190,6 +189,7 @@ export default function ServiceLabs() {
             </button>
           </div>
         </section>
+
         <Footer />
       </div>
     </>
