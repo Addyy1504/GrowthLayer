@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { Palette, Globe, FlaskConical, ArrowRight } from "lucide-react";
 
 export default function Services() {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const [isMobile, setIsMobile] = useState(false);
+
+  // ✅ one-time reveal (never turns false again)
+  const [hasRevealed, setHasRevealed] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -16,23 +18,35 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
-    // ✅ Mobile: always visible (no observer, no state flips while scrolling)
+    // ✅ Mobile: always visible
     if (isMobile) {
-      setIsVisible(true);
+      setHasRevealed(true);
       return;
     }
+
+    // ✅ If already revealed, do nothing (prevents scroll-up jank)
+    if (hasRevealed) return;
 
     const node = sectionRef.current;
     if (!node) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.2, rootMargin: "0px" }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true);
+          observer.disconnect(); // ✅ stop observing after first trigger
+        }
+      },
+      {
+        threshold: 0,
+        // triggers slightly before the section fully enters
+        rootMargin: "120px 0px -80px 0px",
+      }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [isMobile]);
+  }, [isMobile, hasRevealed]);
 
   const services = useMemo(
     () => [
@@ -59,18 +73,26 @@ export default function Services() {
   );
 
   const cardAnim = (index: number) => {
-    if (isMobile) return "opacity-100"; // ✅ always visible on mobile
-    return isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10";
+    if (isMobile) return "opacity-100 translate-y-0";
+    return hasRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10";
   };
 
   return (
-    <section id="services" ref={sectionRef} className="py-32 bg-white relative overflow-hidden">
+    <section
+      id="services"
+      ref={sectionRef}
+      className="py-32 bg-white relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <h2
           className={[
             "text-5xl md:text-7xl font-black text-center mb-20",
-            isMobile ? "" : "transition-all duration-700",
-            isMobile ? "opacity-100 translate-y-0" : isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+            isMobile ? "" : "transition-all duration-700 will-change-transform",
+            isMobile
+              ? "opacity-100 translate-y-0"
+              : hasRevealed
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8",
           ].join(" ")}
         >
           What We Do<span className="text-[#3EF4E4]">.</span>
@@ -86,15 +108,17 @@ export default function Services() {
                 to={service.path}
                 className={[
                   "group relative p-10 rounded-3xl bg-[#3EF4E4] text-black",
+                  // ✅ keep hover effects, but avoid costly transitions while hidden
                   isMobile
                     ? "shadow-md"
-                    : "shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2",
-                  isMobile ? "" : "transition-all",
+                    : "shadow-lg hover:shadow-2xl transition-transform transition-shadow duration-500 hover:-translate-y-2",
+                  // ✅ reveal transition only
+                  isMobile ? "" : "transition-opacity duration-700",
                   cardAnim(index),
                 ].join(" ")}
                 style={{
-                  transitionDelay: !isMobile && isVisible ? `${0.12 + index * 0.1}s` : "0s",
-                  willChange: !isMobile ? "transform, opacity" : "auto",
+                  // ✅ apply delay only during first reveal
+                  transitionDelay: !isMobile && !hasRevealed ? "0s" : `${0.12 + index * 0.1}s`,
                 }}
               >
                 {!isMobile && (
