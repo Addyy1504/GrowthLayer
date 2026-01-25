@@ -7,7 +7,6 @@ export default function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const [isMobile, setIsMobile] = useState(false);
-  const hasAnimatedOnceRef = useRef(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -17,28 +16,18 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
+    // ✅ Mobile: always visible (no observer, no state flips while scrolling)
+    if (isMobile) {
+      setIsVisible(true);
+      return;
+    }
+
     const node = sectionRef.current;
     if (!node) return;
 
-    // ✅ On mobile: animate ONCE, never toggle back (prevents scroll-up jank)
-    // ✅ On desktop: still allow in/out animations if you want
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (isMobile) {
-          if (entry.isIntersecting && !hasAnimatedOnceRef.current) {
-            hasAnimatedOnceRef.current = true;
-            setIsVisible(true);
-            observer.disconnect(); // ✅ stop observing = no thrash
-          }
-        } else {
-          setIsVisible(entry.isIntersecting);
-        }
-      },
-      {
-        threshold: isMobile ? 0.18 : 0.2,
-        // ✅ IMPORTANT: use symmetric rootMargin to avoid rapid enter/exit near top edge
-        rootMargin: isMobile ? "80px 0px 80px 0px" : "0px",
-      }
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2, rootMargin: "0px" }
     );
 
     observer.observe(node);
@@ -69,34 +58,24 @@ export default function Services() {
     []
   );
 
-  const getCardAnimation = (index: number) => {
-    // ✅ Mobile: only opacity (no translate) = smoothest on cheap GPUs
-    if (isMobile) {
-      return isVisible ? "opacity-100" : "opacity-0";
-    }
-    // Desktop: you can keep translate
+  const cardAnim = (index: number) => {
+    if (isMobile) return "opacity-100"; // ✅ always visible on mobile
     return isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10";
   };
 
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="py-32 bg-white relative overflow-hidden"
-    >
+    <section id="services" ref={sectionRef} className="py-32 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
         <h2
           className={[
             "text-5xl md:text-7xl font-black text-center mb-20",
-            "transition-opacity duration-700 will-change-[opacity]",
-            isVisible ? "opacity-100" : "opacity-0",
+            isMobile ? "" : "transition-all duration-700",
+            isMobile ? "opacity-100 translate-y-0" : isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
           ].join(" ")}
         >
           What We Do<span className="text-[#3EF4E4]">.</span>
         </h2>
 
-        {/* Cards */}
         <div className="grid md:grid-cols-3 gap-10">
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -107,20 +86,17 @@ export default function Services() {
                 to={service.path}
                 className={[
                   "group relative p-10 rounded-3xl bg-[#3EF4E4] text-black",
-                  // ✅ Mobile: remove heavy hover transforms + reduce shadow cost
                   isMobile
-                    ? "shadow-md transition-opacity duration-700"
+                    ? "shadow-md"
                     : "shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2",
-                  // ✅ Only animate opacity on mobile
-                  isMobile ? "will-change-[opacity]" : "will-change-[transform,opacity]",
-                  // ✅ animation state
-                  getCardAnimation(index),
+                  isMobile ? "" : "transition-all",
+                  cardAnim(index),
                 ].join(" ")}
                 style={{
-                  transitionDelay: isVisible ? `${0.1 + index * (isMobile ? 0.12 : 0.1)}s` : "0s",
+                  transitionDelay: !isMobile && isVisible ? `${0.12 + index * 0.1}s` : "0s",
+                  willChange: !isMobile ? "transform, opacity" : "auto",
                 }}
               >
-                {/* ✅ Mobile: remove overlay fade (expensive) */}
                 {!isMobile && (
                   <div className="absolute inset-0 rounded-3xl bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                 )}
@@ -129,7 +105,6 @@ export default function Services() {
                   <div
                     className={[
                       "w-16 h-16 rounded-2xl bg-black flex items-center justify-center mb-6",
-                      // ✅ Mobile: no scale animation
                       isMobile ? "" : "group-hover:scale-110 transition-transform duration-300",
                     ].join(" ")}
                   >
