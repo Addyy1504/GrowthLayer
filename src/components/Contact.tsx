@@ -25,6 +25,9 @@ export default function Contact() {
   const INSTAGRAM_LINK = "https://www.instagram.com/growthlayer.studio?igsh=MXBhb3cyeHk4NWh3ag==";
   const LINKEDIN_LINK = "https://linkedin.com";
 
+  // ✅ Book a call link (your Vercel route)
+  const BOOK_CALL_LINK = "/book"; // or "https://growthlayerstudio.in/book"
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
       threshold: 0.2,
@@ -172,7 +175,7 @@ export default function Contact() {
               className="w-full px-5 py-4 rounded-2xl border border-black/10 bg-[#FAFAFA] focus:border-black focus:outline-none text-sm sm:text-base placeholder-gray-500 resize-none transition-all"
             />
 
-            {/* submit (NO WhatsApp redirect) */}
+            {/* submit */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -181,7 +184,17 @@ export default function Contact() {
               {isSubmitting ? "Submitting..." : "Send details"}
             </button>
 
-            {/* socials (react-icons for all 3) */}
+            {/* ✅ schedule call */}
+            <a
+              href={BOOK_CALL_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-4 sm:py-5 rounded-2xl font-black text-black bg-white border-2 border-black hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center gap-3"
+            >
+              Schedule a call now
+            </a>
+
+            {/* socials */}
             <div className="flex items-center justify-center gap-6 pt-4">
               {/* WhatsApp */}
               <a
@@ -289,7 +302,23 @@ export default function Contact() {
                 </button>
               </div>
 
-              {modalType === "error" ? (
+              {/* ✅ If success, show book call CTA */}
+              {modalType === "success" ? (
+                <div className="mt-5 space-y-3">
+                  <a
+                    href={BOOK_CALL_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-12 rounded-2xl font-black bg-[#3EF4E4] text-black hover:opacity-90 transition flex items-center justify-center"
+                  >
+                    Book a call now
+                  </a>
+
+                  <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden">
+                    <div className="h-full rounded-full bg-[#3EF4E4] w-full transition-all duration-700" />
+                  </div>
+                </div>
+              ) : modalType === "error" ? (
                 <div className="mt-5 flex gap-3">
                   <a
                     href={WHATSAPP_LINK}

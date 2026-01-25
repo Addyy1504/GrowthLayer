@@ -11,6 +11,7 @@ import LooksSalon from './pages/LooksSalon';
 import AnchorFab from './pages/AnchorFab';
 import Restaurant from './pages/Restaurant'; // ✅ Added Restaurant Case Study
 import RealEstate from './pages/RealEstate'; // ✅ Real Estate Case Study
+import BookCall from "./pages/BookCall";
 
 // 🧰 Services
 import ServiceCreatives from './pages/ServiceCreatives';
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/case-studies/restaurant" element={<Restaurant />} /> {/* ✅ Added */}
         <Route path="/case-studies/anchor-fab" element={<AnchorFab />} />
         <Route path="/case-studies/real-estate" element={<RealEstate />} />
+        <Route path="/book" element={<BookCall />} />
 
         {/* 🧰 Services */}
         <Route path="/services/creatives" element={<ServiceCreatives />} />
